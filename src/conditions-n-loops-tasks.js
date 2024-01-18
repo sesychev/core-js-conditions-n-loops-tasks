@@ -143,28 +143,33 @@ function convertNumberToString(numberStr) {
     'eight',
     'nine',
   ];
+
   let result = '';
+
+  if (numberStr.length === 1) return `${num[Number(numberStr[0])]}`;
+
   for (let i = 0; i < numberStr.length; i += 1) {
-    if (parseInt(numberStr[i], 10) >= 0 && numberStr.length > 1)
-      result += `${num[Number(numberStr[i])]}`;
-    else if (numberStr.length === 1) result = `${num[Number(numberStr[i])]}`;
-    else {
-      switch (numberStr[i]) {
-        case '.':
-          result += ' point';
-          break;
-        case ',':
-          result += ' point';
-          break;
-        case '-':
-          result += 'minus ';
-          break;
-        default:
-      }
+    if (parseInt(numberStr[i], 10) >= 0)
+      result += `${num[Number(numberStr[i])]} `;
+    switch (numberStr[i]) {
+      case '.':
+        result += 'point ';
+        break;
+      case ',':
+        result += 'point ';
+        break;
+      case '-':
+        result += 'minus ';
+        break;
+      default:
     }
   }
 
-  return result;
+  let answer = '';
+
+  for (let j = 0; j < result.length - 1; j += 1) answer += result[j];
+
+  return answer;
 }
 
 /**
