@@ -43,6 +43,7 @@ function getMaxNumber(a, b, c) {
   if (a >= b && a >= c) max = a;
   else if (b >= c) max = b;
   else if (c >= b) max = c;
+
   return max;
 }
 
@@ -92,6 +93,7 @@ function isIsoscelesTriangle(a, b, c) {
   if (a === b && a + b > c) res = true;
   if (a === c && a + c > b) res = true;
   if (b === c && b + c > a) res = true;
+
   return res;
 }
 
@@ -128,8 +130,41 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const num = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+  let result = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (parseInt(numberStr[i], 10) >= 0 && numberStr.length > 1)
+      result += `${num[Number(numberStr[i])]}`;
+    else if (numberStr.length === 1) result = `${num[Number(numberStr[i])]}`;
+    else {
+      switch (numberStr[i]) {
+        case '.':
+          result += ' point';
+          break;
+        case ',':
+          result += ' point';
+          break;
+        case '-':
+          result += 'minus ';
+          break;
+        default:
+      }
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -182,8 +217,14 @@ function getIndexOf(str, letter) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let temp = num;
+  while (temp > 0) {
+    if (temp % 10 === digit) return true;
+    temp = Math.floor(temp / 10);
+  }
+
+  return false;
 }
 
 /**
