@@ -344,7 +344,7 @@ function sortByAsc(arr) {
   const res = arr;
 
   for (let i = 0; i < res.length; i += 1) {
-    for (let j = 0; j < res.length - i - 1; j += 1) {
+    for (let j = 0; j < res.length - i; j += 1) {
       if (res[j] > res[j + 1]) {
         const swap = res[j];
         res[j] = res[j + 1];
