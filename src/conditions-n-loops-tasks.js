@@ -341,7 +341,7 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  const res = [...arr];
+  const res = arr;
 
   for (let i = 0; i < res.length; i += 1) {
     for (let j = 0; j < res.length - i - 1; j += 1) {
