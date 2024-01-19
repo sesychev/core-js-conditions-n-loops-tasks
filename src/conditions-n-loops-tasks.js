@@ -111,8 +111,26 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  function myfn(n) {
+    if (n === 9) return 'IX';
+    if (n === 8) return 'VIII';
+    if (n === 7) return 'VII';
+    if (n === 6) return 'VI';
+    if (n === 5) return 'V';
+    if (n === 4) return 'IV';
+    if (n === 3) return 'III';
+    if (n === 2) return 'II';
+    if (n === 1) return 'I';
+
+    return '';
+  }
+
+  if (num >= 30) return `XXX${myfn(num - 30)}`;
+  if (num >= 20) return `XX${myfn(num - 20)}`;
+  if (num >= 10) return `X${myfn(num - 10)}`;
+
+  return myfn(num);
 }
 
 /**
@@ -184,8 +202,11 @@ function convertNumberToString(numberStr) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  for (let i = 0; i < Math.floor(str.length / 2); i += 1)
+    if (str[i] !== str[str.length - 1 - i]) return false;
+
+  return true;
 }
 
 /**
@@ -204,6 +225,7 @@ function isPalindrome(/* str */) {
  */
 function getIndexOf(str, letter) {
   for (let i = 0; i < str.length; i += 1) if (str[i] === letter) return i;
+
   return -1;
 }
 
@@ -245,8 +267,19 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let l = 0;
+  let r = 0;
+
+  for (let i = 0; i < arr.length - 1; i += 1) {
+    for (let j = 0; j < i; j += 1) l += arr[j];
+    for (let j = arr.length - 1; j > i; j -= 1) r += arr[j];
+    if (l === r) return i;
+    l = 0;
+    r = 0;
+  }
+
+  return -1;
 }
 
 /**
@@ -307,8 +340,20 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const res = [...arr];
+
+  for (let i = 0; i < res.length; i += 1) {
+    for (let j = 0; j < res.length - i - 1; j += 1) {
+      if (res[j] > res[j + 1]) {
+        const swap = res[j];
+        res[j] = res[j + 1];
+        res[j + 1] = swap;
+      }
+    }
+  }
+
+  return res;
 }
 
 /**
